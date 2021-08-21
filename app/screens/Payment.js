@@ -49,9 +49,9 @@ const Payment = ({navigation}) => {
       order_id: order.id,
       key: RazorpayApiKey,
       prefill: {
-        email: 'useremail@example.com',
-        contact: '9191919191',
-        name: 'John Doe',
+        email: '',
+        contact: '',
+        name: '',
       },
       theme: {color: '#a29bfe'},
     };
@@ -62,7 +62,11 @@ const Payment = ({navigation}) => {
       })
       .then(() => setloading(false))
       .then(() => navigation.navigate('Welcome'))
-      .catch(console.log);
+      .catch(() => {
+        alert('Payment Failed: ');
+        navigation.navigate('Pay');
+        setloading(false);
+      });
   };
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -70,11 +74,20 @@ const Payment = ({navigation}) => {
         <Text>Insert any amount in below input</Text>
         <TextInput
           value={amount}
+          keyboardType="number-pad"
           onChangeText={amount => setAmount(amount)}
           placeholder={'amount'}
           style={styles.input}
         />
-        <Text style={{color: 'blue'}}>{amount}</Text>
+        <Text
+          style={{
+            color: 'blue',
+            fontSize: 25,
+            fontWeight: 'bold',
+            marginTop: 20,
+          }}>
+          {amount}
+        </Text>
         {loading ? (
           <ActivityIndicator size="large" color="red" />
         ) : (

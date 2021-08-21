@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, Text, Image, Dimensions} from 'react-native';
 
 function Welcome({navigation}) {
   setTimeout(() => {
@@ -10,7 +10,7 @@ function Welcome({navigation}) {
     <View style={styles.container}>
       <Text style={styles.txt}>Welcome</Text>
       <Text style={styles.txt1}>To</Text>
-      <Image source={require('../assets/skygoal.png')} />
+      <Image source={require('../assets/skygoal.png')} style={styles.img} />
     </View>
   );
 }
@@ -30,6 +30,10 @@ const styles = StyleSheet.create({
   txt1: {
     fontSize: 28,
     fontWeight: 'bold',
+  },
+  img: {
+    width: Dimensions.get('window').width * 0.9,
+    height: Dimensions.get('window').height * 0.5,
   },
 });
 
